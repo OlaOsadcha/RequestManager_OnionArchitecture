@@ -5,7 +5,6 @@ Application for managing users requests/tasks.
 - ASP.NET Core 6 
 - Entity Framework Core 6 
 - AutoMapper
-- Blazor (Server)
 - XUnit
 - Moq
 - Bootstrap
