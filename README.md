@@ -13,7 +13,7 @@ Application for managing users requests/tasks.
 - CSS (SCSS)
 ## Architecture
 - Onion Architecture
-- 
+  
 ## Migrations
 --migration add
 
