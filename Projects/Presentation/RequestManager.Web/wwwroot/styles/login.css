@@ -1,0 +1,30 @@
+﻿.login-container {
+        width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 10rem);
+    padding-top: var(--bs-gutter-x, 5rem);
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+
+    /*width: 100%;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+        'form'
+        'footer';*/
+}
+
+input {
+    margin: 10px 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    border-radius: 5px;
+}
+
+div 
+{
+    margin: 10px 0;
+}

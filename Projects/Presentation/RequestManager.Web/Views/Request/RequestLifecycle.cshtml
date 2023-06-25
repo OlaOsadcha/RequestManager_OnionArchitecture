@@ -1,0 +1,21 @@
+﻿@model RequestManager.Web.Models.Enitities.LifecycleDTO
+
+<div class="modal-content">
+    <div class="modal-header" style="background-color: lightgray;">
+        <h5 class="modal-title">Request Lifecycle</h5>
+        <button class="close" data-bs-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <p><b>Lifecycle</b></p>
+            <p>Opened:  @Html.DisplayFor(m=>m.Opened)</p>
+            <p>Distributed:  @Html.DisplayFor(m=>m.Distributed)</p>
+            <p>In process:  @Html.DisplayFor(m=>m.Proccesing)</p>
+            <p>Checking:  @Html.DisplayFor(m=>m.Checking)</p>
+            <p>Closed:  @Html.DisplayFor(m=>m.Closed)</p>
+
+            <div class="modal-footer" />
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,36 @@
+﻿@model RequestManager.Web.Models.LoginViewModel
+
+@{
+    Layout = "_LoginLayout";
+}
+
+<h1>Login</h1>
+
+<div>  
+    <div class="div-box">
+        <form asp-area="" asp-controller="Account" asp-action="Login" method="post">
+            <div asp-validation-summary="All"></div>
+            <div>
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" />
+                <span asp-validation-for="UserName"></span>
+            </div>
+            <div>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div>
+                <label asp-for="RememberMe">
+                    <input asp-for="RememberMe" /> @Html.DisplayNameFor(model => model.RememberMe)
+                </label>
+            </div>
+            <div>
+                <input type="submit" value="Log in" />
+            </div>
+        </form>
+    </div>
+    <div>
+        <a class="btn btn-info" asp-controller="Account" asp-action="ForgotPassword">Forgot password? Click here to reset</a>
+    </div>
+</div>

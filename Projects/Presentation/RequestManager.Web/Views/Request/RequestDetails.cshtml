@@ -1,0 +1,20 @@
+﻿@model RequestManager.Web.Models.Enitities.RequestDto
+
+
+<div class="modal-content">
+    <div class="modal-header" style="background-color: lightgray;">
+        <h5 class="modal-title">Request Details</h5>
+        <button class="close" data-bs-dismiss="modal" area-hidden="true" >X</button>
+    </div>
+    <div class="modal-body">
+        <form>        
+            <p><b>Request Nr: @Html.DisplayFor(x => x.Id)</b></p>  
+            <p>Description: @Html.DisplayFor(x => x.Description)</p>        
+            <p>Subdepartment: @Html.DisplayFor(x=>x.SubDepartment.CabNumber)</p>
+            <p>Category: @Html.DisplayFor(m=>m.Category.Name)</p>
+            <p>Comment: @Html.DisplayFor(m=>m.Comment)</p>
+
+        <div class="modal-footer"/>         
+    </form>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+﻿@model IEnumerable<RequestDto>
+@using RequestManager.Core.Domain.Entities;
+@using RequestManager.Web.Models.Enitities
+
+@{
+    ViewBag.Title = "List of request";
+    int i = 0; //counter
+}
+
+<h2>List of request</h2>
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
+<div id="PlaceHolderRequest"></div>
+
+<p>Number of all requests: @(Model.Count<RequestDto>())</p>
+<table>
+
+    @foreach (var item in Model)
+    {
+        i++;
+        <tr>
+            <td><b>@i</b></td>
+            <td>
+                @if (item.Status == (int)RequestStatus.Open)
+                {
+                    <img src="~/images/status1.png" title="Request is open" class="tdImage" />
+                }
+                else if (item.Status == (int)RequestStatus.Distributed)
+                {
+                    <img src="~/images/status2.png" title="Request is distributed" class="tdImage" />
+                }
+                else if (item.Status == (int)RequestStatus.Proccesing)
+                {
+                    <img src="~/images/status3.png" title="Request in progress" class="tdImage" />
+                }
+                else if (item.Status == (int)RequestStatus.Checking)
+                {
+                    <img src="~/images/status4.png" title="Request is checking" class="tdImage" />
+                }
+                else if (item.Status == (int)RequestStatus.Closed)
+                {
+                    <img src="~/images/status5.png" title="Request is closed" class="tdImage" />
+                }
+            </td>
+            <td>
+                @if (item.Priority == (int)RequestPriority.Low)
+                {
+                    <img src="~/images/prior1.png" title="Low priority" class="tdImage" />
+                }
+                else if (item.Priority == (int)RequestPriority.Medium)
+                {
+                    <img src="~/images/prior2.png" title="Medium priority" class="tdImage" />
+                }
+                else if (item.Priority == (int)RequestPriority.High)
+                {
+                    <img src="~/images/prior3.png" title="High priority" class="tdImage" />
+                }
+                else if (item.Priority == (int)RequestPriority.Critical)
+                {
+                    <img src="~/images/prior4.png" title="Critical priority" class="tdImage" />
+                }
+            </td>
+            <td>
+                @if (item.File != string.Empty)
+                {
+                    <a asp-controller="Request" asp-action="Download" asp-route-id="@item.Id">
+                        <img src="~/images/filey.png" alt='@item.File' class="tdImage" />
+                    </a>
+                }
+                else
+                {
+                    <img src="~/images/filen.png" alt="no image" class="tdImage" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lifecycle.Opened)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+
+                <div>
+                    <a class="compItem" data-dialog-id="infoDialog" data-dialog-title="Request description"
+                   asp-controller="Request" asp-action="Details" asp-route-id="@item.Id">
+                        <img src="~/images/info.png" class="tdImage" title="Request description" />
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <a class="compItem" data-dialog-id="executorDialog" data-dialog-title="Request executor"
+                   asp-controller="Request" asp-action="Executor" asp-route-id="@item.Id">
+                        <img src="~/images/executor.png" class="tdImage" title="Request executor" />
+                    </a>
+                </div>
+            </td>
+            <td>
+                <div>
+                    <a class="compItem" data-dialog-id="lifecycleDialog" data-dialog-title="Request lifecycle"
+                   asp-action="Lifecycle" asp-controller="Request" asp-route-id="@item.LifecycleId">
+                        <img src="~/images/lifecycle.png" class="tdImage" title="Request lifecycle" />
+                    </a>
+                </div>
+            </td>          
+        </tr>
+    }
+</table>
+
+@section StylesRequest
+    {
+    <style type="text/css">
+        .tdImage {
+            width: 30px;
+            height: 25px;
+        }
+    </style>
+}
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+
+            $(".compItem").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+    </script>
+}

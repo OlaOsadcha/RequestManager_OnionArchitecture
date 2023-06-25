@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    @await Html.PartialAsync("~/Views/Shared/LayoutPartial/MetaTagsLayout.cshtml")
+    @await Html.PartialAsync("~/Views/Shared/LayoutPartial/CssPartialLayout.cshtml")
+    
+    @RenderSection("StylesRequest", required: false)
+</head>
+<body>
+    @await Html.PartialAsync("~/Views/Shared/LayoutPartial/HeaderPartial.cshtml")
+
+    <div class="container">
+        <main role="main" class="pb-3">           
+            @RenderBody()
+        </main>
+    </div>
+
+    @await Html.PartialAsync("~/Views/Shared/LayoutPartial/FooterPartial.cshtml")
+    @await Html.PartialAsync("~/Views/Shared/LayoutPartial/ScriptsPartial.cshtml")
+  
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

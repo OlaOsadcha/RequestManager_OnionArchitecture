@@ -1,0 +1,35 @@
+﻿@model RequestManager.Web.Models.Enitities.CategoryDTO
+
+<h2>Categories</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>New category:</legend>
+        <div class="editor-label">
+            @Html.LabelFor(x => x.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(x => x.Name)
+            @Html.ValidationMessageFor(x => x.Name)
+        </div>
+
+        <p><input type="submit" value="Add category" /></p>
+    </fieldset>
+}
+
+<table>
+    @foreach (var item in ViewBag.Categories)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>
+                <a asp-controller="Category" asp-action="DeleteCategory" asp-route-id="@item.Id"
+               onclick="return confirm('Are you sure you want to category department?');">Delete</a>
+            </td>       
+        </tr>
+    }
+</table>

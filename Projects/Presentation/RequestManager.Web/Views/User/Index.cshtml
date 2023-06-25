@@ -1,0 +1,109 @@
+﻿@model IEnumerable<RequestManager.Web.Models.UserViewModel>
+
+@{
+    ViewData["Title"] = "User list";
+}
+
+<h1>Index</h1>
+
+<div>
+    <form asp-action="Index">
+        <table class="table">
+            <tr>
+                <td><p>Department:</p></td>
+                 <td>@Html.DropDownList("department", ViewBag.DepartmentsFilter as SelectList)</td>
+
+                <td><p>Status:</p></td><td>@Html.DropDownList("role", ViewBag.RolesFilter as SelectList)</td>
+                <td><input id="FilterBtn" type="submit" value="Filter"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div id="modDialog" class="modal fade">
+    <div id="dialogContent" class="modal-dialog"></div>
+</div>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div>
+
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.User.PhoneNumber)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Department.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new {/* id=item.User.Id*/ }) |
+                     <a class="compItem" data-dialog-id="infoDialog" data-dialog-title="User details"
+                         asp-controller="User" asp-action="Details" asp-route-id="@item.User.Id">Details</a>|                
+                    @Html.ActionLink("Delete", "Delete", new { id = item.User.Id })
+                </td>               
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(function () {
+            $.ajaxSetup({ cache: false });
+
+            $(".compItem").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+    </script>
+}

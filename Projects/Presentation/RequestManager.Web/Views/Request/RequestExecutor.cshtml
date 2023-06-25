@@ -1,0 +1,20 @@
+﻿@model RequestManager.Web.Models.Enitities.UserDTO
+
+<div class="modal-content">
+    <div class="modal-header" style="background-color: lightgray;">
+        <h5 class="modal-title">Executor Details</h5>
+        <button class="close" data-bs-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <p><b>Executor information</b></p>
+            <p>Name: @Html.DisplayFor(x => x.UserName)</p>
+            <p>Position: @Html.DisplayFor(x=>x.Position)</p>
+            <p>Email: @Html.DisplayFor(m=>m.Email)</p>        
+
+            <div class="modal-footer" />
+        </form>
+    </div>
+</div>
+
+

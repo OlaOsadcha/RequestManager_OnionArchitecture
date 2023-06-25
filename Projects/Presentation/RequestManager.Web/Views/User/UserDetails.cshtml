@@ -1,0 +1,22 @@
+﻿@model RequestManager.Web.Models.Enitities.RequestUserDto
+
+<div class="modal-content">
+    <div class="modal-header" style="background-color: lightpink;">
+        <h5 class="modal-title">User Details</h5>
+        <button class="close" data-bs-dismiss="modal" area-hidden="true">X</button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <p><b>User Id: @Html.DisplayFor(x => x.Id)</b></p>
+            <p>User Name: @Html.DisplayFor(x => x.UserName)</p>
+            <p>Department: @Html.DisplayFor(x => x.Department.Name)</p>     
+            <p>Position: @Html.DisplayFor(m => m.Position)</p>
+            <p>Email: @Html.DisplayFor(m => m.Email)</p>
+            <p>Phone Number: @Html.DisplayFor(m => m.PhoneNumber)</p>
+
+            <div class="modal-footer" />
+        </form>
+    </div>
+</div>
+
+

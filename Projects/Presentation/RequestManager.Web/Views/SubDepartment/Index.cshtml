@@ -1,0 +1,47 @@
+﻿@model RequestManager.Web.Models.Enitities.SubDepartmentDTO
+
+<h2>SubDepartments</h2>
+
+ @using(Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>New subdepartment:</legend>
+        <div class="editor-label">
+            @Html.LabelFor(x => x.CabNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(x => x.CabNumber)
+            @Html.ValidationMessageFor(x => x.CabNumber)
+        </div>
+
+         <div class="editor-label">
+            @Html.LabelFor(model=>model.DepartmentId)
+        </div>
+        <div class="editor-field">
+           @Html.DropDownListFor(model=>model.DepartmentId, ViewBag.Departments as SelectList)
+           @Html.ValidationMessageFor(model=>model.DepartmentId)
+        </div>
+
+        <p><input type="submit" value="Add department" /></p>
+    </fieldset>
+}
+
+<h3>List of subdepartments:</h3>
+
+<table>
+    @foreach (var item in ViewBag.SubDepartments)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.CabNumber</td>
+            <td>@item.Department.Name</td>
+            <td>
+                <a asp-asp-controller="Subdepartment" asp-action="DeleteSubDepartment" asp-route-id="@item.Id"
+               onclick="return confirm('Are you sure you want to delete subdepartment?');">Delete</a>
+            </td>
+            
+        </tr>
+    }
+</table>

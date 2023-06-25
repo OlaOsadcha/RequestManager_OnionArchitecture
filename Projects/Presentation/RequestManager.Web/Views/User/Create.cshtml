@@ -1,0 +1,74 @@
+﻿@model RequestManager.Web.Models.Enitities.UserDTO
+
+@{
+    ViewBag.Title = "New User";
+}
+
+<h2>New User</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ConfirmPassword)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            @Html.ValidationMessageFor(model => model.ConfirmPassword)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Position)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Position)
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+        <div class="editor-label">Department</div>
+
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.DepartmentId, ViewBag.Departments as SelectList)
+            @Html.ValidationMessageFor(model => model.DepartmentId)
+        </div>
+
+        <div class="editor-label">Status</div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Role, ViewBag.Status as SelectList)
+            @Html.ValidationMessageFor(model => model.Role)
+        </div>
+        <p>
+            <input style="top:10px;" type="submit" value="Add" />
+        </p>
+    </fieldset>
+}
